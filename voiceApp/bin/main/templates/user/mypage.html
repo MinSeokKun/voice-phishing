@@ -1,0 +1,68 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{common/layout}">
+<head>
+    <link rel="stylesheet" href="/css/mypage.css">
+</head>
+<th:block layout:fragment="content">
+<div class="content">
+
+    <section>
+        <div class="wrapper">
+            <h3 class="mypage-title">마이페이지</h3>
+            
+            <form id="userInfoForm" class="mypage-form">
+                <div id="userInfo" class="mypage-info">
+                    <p class="mypage-field">
+                        <label for="email">이메일:</label>
+                        <div class="mypage-readonly" id="email"></div>
+                    </p>
+                    <p class="mypage-field">
+                        <label for="username">아이디:</label>
+                        <div class="mypage-readonly" id="username"></div>
+                    </p>
+                    <p class="mypage-field">
+                        <label for="name">이름:</label>
+                        <input type="text" id="name" name="name" class="mypage-input">
+                    </p>
+                </div>
+                <button type="submit" class="mypage-submit">정보 수정</button>
+            </form>
+            <button id="deleteAccount" class="mypage-delete">회원 탈퇴</button>
+        </div>
+    </section>
+    <script src="/js/mypage.js"></script>
+    <script>
+	    $(document).ready(function() {
+	        // 회원 탈퇴 버튼 이벤트 리스너
+	        $('#deleteAccount').on('click', function(e) {
+	            e.preventDefault();
+	            if (confirm('정말로 회원 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+	                deleteAccount();
+	            }
+	        });
+	
+	        // 회원 탈퇴 함수
+	        function deleteAccount() {
+			    $.ajax({
+			        url: '/delete',
+			        type: 'DELETE',
+			        xhrFields: {
+			            withCredentials: true
+			        },
+			        success: function(data) {
+			            alert('회원 탈퇴가 완료되었습니다.');
+			            // 로그아웃 처리 및 리다이렉트
+			            window.location.href = '/member/login';  // 로그인 페이지로 리다이렉트
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) {
+			            console.error('Error:', textStatus, errorThrown);
+			            alert('회원 탈퇴에 실패했습니다. 오류: ' + jqXHR.responseText);
+			        }
+			    });
+			}
+	    });
+	</script>
+</div>
+</th:block>
+</html>

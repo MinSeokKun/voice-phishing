@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.error-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #e74c3c;
+}
+
+.home-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.home-link:hover {
+    background-color: #2980b9;
+}

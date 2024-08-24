@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>보이스피싱 음성 테스트</title>
+	
+	<!-- CSRF 메타 태그 -->
+<!--		<meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+   	
+	<!-- 구글폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+	<!-- 폰트어썸 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/ms.css}">
+
+	<!-- progress js -->
+	<script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.1.0/dist/progressbar.min.js"></script>
+	<!-- jQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- js -->
+	<script src="/js/script.js"></script>
+	<!-- <script src="/js/jwt.js"></script> -->
+	<script src="/js/user.js"></script>
+	<script src="/js/tutorial.js"></script>
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="container">
+			<div th:fragment="cont_wrap" class="content_wrap">
+                <header th:replace="~{common/header :: header}"></header>
+				<div th:replace="~{common/nav :: nav}"></div>
+                <th:block layout:fragment="content"></th:block>
+                <footer th:replace="~{common/footer :: footer}"></footer>
+            </div>
+		</div>
+	</div>
+</body>
+
+</html>

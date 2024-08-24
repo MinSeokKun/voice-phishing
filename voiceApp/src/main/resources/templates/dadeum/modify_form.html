@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html layout:decorate="~{dadeum/dadeum-layout}" layout:fragment="content" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 정보 수정</title>
+</head>
+
+<body>
+
+    <div class="Modify_container">
+            <h2>회원 정보 수정</h2>
+            <div class="Modify_box">
+            <form th:action="@{/members/modify}" th:object="${memberForm}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                
+					
+                <div class="Modify_subbox">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" th:field="*{username}" class="form-control" readonly>
+                </div>
+                
+                <div class="Modify_subbox">
+                    <label for="name" class="form-label">이름</label>
+                    <input type="text" th:field="*{name}" class="form-control">
+                </div>
+                
+                <div class="Modify_subbox">
+                    <label for="password" class="form-label">비밀번호</label>
+                    <input type="password" th:field="*{password}" class="form-control">
+                </div>
+                                
+                <div class="Modify_subbox">
+                    <label for="email" class="form-label">이메일</label>
+                    <input type="email" th:field="*{email}" class="form-control">
+                </div>
+                
+                <div class="modi_submit_btu">
+                    <button type="submit" class="btn4 btn4-primary">수정</button>
+                    <a th:href="@{/members/mypage}" class="btn5 btn5-secon" style="background-color: rgb(192, 192, 192); border-color: rgb(192, 192, 192);">취소</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

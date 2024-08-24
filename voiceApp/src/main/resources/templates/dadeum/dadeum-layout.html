@@ -1,0 +1,24 @@
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link rel="stylesheet" href="/css/dd/navbar.css">
+        <link rel="stylesheet" href="/css/dd/modify.css">
+        <link rel="stylesheet" href="/css/dd/loginform.css">
+        <link rel="stylesheet" href="/css/dd/signform.css">
+		<link rel="stylesheet" href="/css/dd/styles.css">
+    
+</head>
+<body>
+    
+    <!-- Navbar Start -->
+    <div th:replace="~{dadeum/dadeum-nav :: navbarFragment}"></div>
+    <!-- Navbar End -->
+    <div layout:fragment="content"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/js/dd/scripts.js"></script>
+    <script src="/js/dd/auth.js"></script>
+</body>
+</html>

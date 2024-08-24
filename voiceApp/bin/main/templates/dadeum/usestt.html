@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html layout:decorate="~{dadeum/dadeum-layout}" layout:fragment="content" lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>음성 to 텍스트 변환</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dd/styles.css">
+    <link rel="stylesheet" href="/css/dd/usestt.css">
+	
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+        <div class="usesttcontainer">
+            <div class="card">
+                <h1>음성 파일을 텍스트로 변환</h1>
+                <form class="uploadForm" id="uploadForm" th:action="@{/dadeum/transcribe/file}" method="post" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input type="file" name="file" accept="audio/*" id="fileInput">
+                        <label for="fileInput" class="file-label">
+                            <span class="file-icon">📁</span>
+                            <span class="file-text">파일 선택</span>
+                        </label>
+                        <span id="fileName" class="file-name">선택된 파일 없음</span>
+                        <input type="hidden" name="memberNum" th:value="${member.id}">
+                    </div>
+                    <button type="submit" class="submit-btn">변환하기</button>
+                </form>
+                <div class="loader" id="loader"></div>
+                <div id="result" class="result-container"></div>
+            </div>
+        </div>
+
+	
+
+            <script th:inline="javascript">
+            /*<![CDATA[*/
+            var apiKey = /*[[${member.apiKey}]]*/ '';
+            /*]]>*/
+
+            $(document).ready(function() {
+                $('#fileInput').change(function() {
+                    var fileName = $(this).val().split('\\').pop();
+                    $('#fileName').text(fileName ? fileName : '선택된 파일 없음');
+                });
+
+                $('#uploadForm').submit(function(event) {
+                    event.preventDefault();
+
+                    var fileInput = $('#fileInput')[0];
+                    if (fileInput.files.length === 0) {
+                        $('#result').html('<p class="error">파일을 업로드하세요.</p>');
+                        $('.result-container').show();
+                        return;
+                    }
+
+                    var formData = new FormData(this);
+                    $('#loader').show();
+                    $('.result-container').hide();
+                    $('button[type="submit"]').prop('disabled', true);
+
+                    $.ajax({
+                        url: '/dadeum/transcribe/file',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            $('#result').html('<p class="success">STT 내용: ' + response.resultText + '</p>');
+                            $('.result-container').show();
+                        },
+                        error: function(xhr, status, error) {
+                            var errorMessage = '알 수 없는 오류가 발생했습니다.';
+                            if (xhr.responseJSON) {
+                                errorMessage = xhr.responseJSON.message || xhr.responseJSON.error || errorMessage;
+                            }
+                            $('#result').html('<p class="error">에러 발생: ' + errorMessage + '</p>');
+                            $('.result-container').show();
+                            
+                            // 에러 정보를 콘솔에 출력
+                            console.log('Error status:', status);
+                            console.log('Error:', error);
+                            console.log('XHR:', xhr);
+                            console.log('Response Text:', xhr.responseText);
+                            console.log('Status Code:', xhr.status);
+                        },
+                        complete: function() {
+                            $('#loader').hide();
+                            $('button[type="submit"]').prop('disabled', false);
+                        }
+                    });
+                });
+            });
+            </script>
+		</body>
+		</html>

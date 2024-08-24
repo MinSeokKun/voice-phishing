@@ -1,0 +1,74 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.adcontainer {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px;
+	margin-top:100px;
+	
+}
+
+h1 {
+    color: #343a40;
+	font-weight: bold;
+	
+}
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #343a40;
+    color: white;
+    border-color: #454d55;
+}
+
+.table td, th{
+	text-align: center;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgb(183, 193, 204);
+}
+
+.pagination .page-link {
+    color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.searchId-input-group{
+	display: flex;
+	text-align: right;
+	float: right;
+	margin : 0 0 20px 0;
+
+}
+
+.searchId{
+	width: 80%;
+	
+}
+
+.searchId:focus {
+    border-color: rgb(65, 66, 78);
+    box-shadow: 0 0 0 0.1rem rgb(216, 218, 222);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}

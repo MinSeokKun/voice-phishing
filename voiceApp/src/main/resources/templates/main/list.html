@@ -1,0 +1,90 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+<th:block layout:fragment="content">
+    <div class="">
+        <section>
+            <div class="list_center">
+                <div class="wrapper contents">
+                    <div class="list-container">
+                        <h3>보이스피싱 검사목록</h3>
+                        <!-- <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="검색어를 입력하세요...">
+                            <button onclick="searchList()">검색</button>
+                        </div> -->
+                        <div>
+						    <form class="search-container" th:action="@{/list}" method="get">
+						        <input type="text" id="searchInput" name="search" th:value="${searchTerm}" placeholder="검색어를 입력하세요...">
+						        <input type="hidden" name="risk" th:value="${currentRisk}">
+						        <button type="submit" onclick="searchList()">검색</button>
+						    </form>
+						</div>
+                        <div class=list_btn_btn>
+                            <a th:href="@{/list(risk='high')}" class="btn btn-danger">위험</a>
+                            <a th:href="@{/list(risk='medium')}" class="btn btn-warning">중간</a>
+                            <a th:href="@{/list(risk='low')}" class="btn btn-success">안전</a>
+                            <a th:href="@{/list}" class="btn btn-secondary">모두 보기</a>
+                        </div>
+                        <div th:each="voice, loop : ${voices}" class="list-item">
+						    <h5 class="list-title" th:classappend="${voice.per < 40 ? 'low-risk' : (voice.per < 75 ? 'medium-risk' : 'high-risk')}">
+						        <div>
+						            <span th:text="${totalCount - (currentPage * size) - loop.index}"></span>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    <span></span>
+                                    <span th:text="${'제목 : ' + voice.tit}"></span>
+                                    
+    							<span class="perdata" th:classappend="${voice.per < 40 ? 'safe' : (voice.per < 75 ? 'caution' : 'danger')}">
+	                                    <th:block th:if="${voice.per >= 75}">위험 </th:block>
+									    <th:block th:if="${voice.per >= 40 and voice.per < 75}">주의 </th:block>
+									    <th:block th:if="${voice.per < 40}">안전 </th:block>
+                                    	<span th:text="${voice.per + '%'}"></span>
+                                    </span>
+                                </div>
+                                <div class="list-time">
+                                	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <span th:text="${#temporals.format(voice.createDate,'검사일 : ' + 'yy/MM/dd')}"></span>
+                                    
+                                </div>
+                            </h5>
+                            <div class="list-content">
+                                <p>
+                                    <span th:text="${voice.data}"></span>
+                                </p>
+                                <div class="list-delete">
+                                    <a class="list-delete-btn" href="javascript:void(0);"
+                                       th:data-uri="@{/voice/delete/{id}(id=${voice.id})}"
+                                       onclick="deleteVoice(this)">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div th:if="${totalPages > 0}" class="pagination">
+    <a th:href="@{/list(page=${currentPage - 1}, risk=${currentRisk}, search=${searchTerm})}"
+       th:if="${currentPage > 0}">이전</a>
+
+    <span th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/list(page=${pageNumber}, risk=${currentRisk}, search=${searchTerm})}"
+           th:text="${pageNumber + 1}"
+           th:class="${pageNumber == currentPage ? 'active' : ''}"></a>
+    </span>
+
+    <a th:href="@{/list(page=${currentPage + 1}, risk=${currentRisk}, search=${searchTerm})}"
+       th:if="${currentPage < totalPages - 1}">다음</a>
+</div>
+</th:block>
+
+<!-- CSS와 JavaScript 파일 포함 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</th:block>
+</html>

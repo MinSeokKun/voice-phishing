@@ -1,0 +1,539 @@
+/* 공용 */
+body{ font-family: "Noto Sans KR", sans-serif; font-weight: 400; }
+/* .contents { max-width: 320px; } */
+.wrapper { margin: 0 auto; padding: 0 20px; }
+.tit { margin-bottom: 16px; }
+.tit span { font-size: 18px; font-weight: bold; }
+.tit i { margin-left: 8px; color: #999; font-size: 16px; }
+button:disabled:hover,
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}
+.contents, .content{ height: 100vh; min-height: 500px; }
+
+#deleteAccount {
+    margin-top: 10px;
+    width: 100%;
+    color: #fff;
+    background: red;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+}
+/* 헤더 */
+#header { height: 60px; background: #fff; }
+#header .wrapper { position: relative; display: flex; justify-content: space-between; align-items: center; height: 100%; z-index: 1000; }
+
+.logo > a > img { width: 112px; }
+.user > i { font-size: 24px; color: #191970; }
+
+/* 푸터 */
+#footer{ margin-top: 40px; height: 40px; text-align: center; line-height: 40px; background: #808080; }
+#footer address { color: #fff; font-size: 14px; }
+/* 메인 */
+.voice_check { position: relative; height: 300px; background: #2e379c; }
+.voice_check .bg_img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.voice_check .bg_img i { position: absolute; color: #101738; opacity: 0.5; }
+.voice_check .bg_img i:nth-child(1) { left: 50px; top: 30px; font-size: 32px; }
+.voice_check .bg_img i:nth-child(2) { left: 34px; top: 130px; font-size: 16px; }
+.voice_check .bg_img i:nth-child(3) { left: 50px; top: 200px; font-size: 20px; }
+.voice_check .bg_img i:nth-child(4) { right: 50px; top: 50px; font-size: 14px; }
+.voice_check .bg_img i:nth-child(5) { right: 34px; top: 130px; font-size: 16px; }
+.voice_check .bg_img i:nth-child(6) { right: 50px; top: 200px; font-size: 28px; }
+
+
+/* 신고정보 */
+.declaration_info {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.declaration_info li {
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.declaration_info li > div:first-child {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.declaration_info li > div:not(:first-child) {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.declaration_info a {
+    color: #0056b3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.declaration_info a:hover {
+    color: #003d82;
+    text-decoration: underline;
+}
+
+.declaration_info span {
+    font-weight: 500;
+    color: #555;
+}
+
+/* 리스트 */
+.list_center { position: relative;
+	min-height: 480px;
+	background: rgb(255, 255, 255); 
+}
+
+
+.voice_check .wrapper { 
+    position: relative; 
+    height: 100%; 
+}
+.check_btn { position: absolute; left: 50%; top: 32px; transform: translateX(-50%); }
+.flie_box { 
+    z-index: 99;
+    position: relative; 
+}
+.file_form { 
+    padding: 20px 16px;
+    margin-top: -60px;
+    border-radius: 10px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); 
+    z-index: 99;
+    background-color: #fff;
+}
+
+.file-upload-container {
+    width: 100%;
+/*     max-width: 400px; */
+    margin: 0 auto;
+}
+.file-upload-container .desc{ 
+    color: #aaa;
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 0;
+ }
+ .file-upload-container .desc strong{
+    color: #666;
+ }
+.input_box > input,
+.file-upload-area {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 12px 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+.file-upload-btn {
+    width: 100%;
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.file-upload-btn:hover {
+    background-color: #0e1642;
+}
+
+#errorMessage {
+    margin-top: 10px;
+    text-align: center;
+}
+.input_box{
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
+	gap:10px;
+}
+.input_box p{
+	font-size: 12px;
+	margin: 0;
+	
+}
+.input_box > input {
+	outline: none;
+	border: none;
+	width: 100%;
+	margin : 0;
+}
+
+.check_btn {
+    width: 180px; height: 180px; border-radius: 50%; background: #fff; position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    opacity: 0.5;
+    transition: all 0.3s;
+/*     z-index: 1007; */
+}
+
+.progress-text i {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.progress-text p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* list */
+.list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.list-item {
+    margin-bottom: 10px;
+}
+
+.list-title {
+    justify-content: space-between;
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    /* color: black;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3); */
+    background-color: #ffffff;
+    border: 2px solid #808080;
+}
+
+.list-title::after {
+    content: '+';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+/* 리스트 제목 수색상 변화 변화 */
+/* .list-title.low-risk {
+    background-color: #4fac54;
+    color: white;
+}
+
+.list-title.medium-risk {
+    background-color: #ffaa29;
+    color: white;
+}
+
+.list-title.high-risk {
+    background-color: #ff6356;
+    color: white;
+} */
+
+/* 기존 스타일 오버라이드 */
+.list-item.active .list-title {
+    /* 활성화 상태의 스타일 */
+    background-color: inherit; /* 원래 색상 유지 */
+    filter: brightness(85%); /* 약간 어둡게 만들어 활성 상태 표시 */
+}
+
+
+
+
+
+.list-item.active .list-title::after {
+    content: '-';
+}
+
+.list-item .list-title {
+    /* 기본 스타일 */
+    /* background-color: #778899; */
+    color: black;
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    margin-top: 20px;
+}
+
+.list-item.active .list-title {
+    /* 활성화 상태의 스타일 */
+    background-color: #73798f; /* 원하는 배경색으로 변경 */
+    color: white; /* 텍스트 색상 변경 */
+}
+
+.list-content {
+    display: none;
+    padding: 10px;
+    border-top: 1px solid #727272;
+    background: #f0f0f0;
+}
+
+.list-item.active .list-content {
+    display: block;
+    border-radius: 5px;
+}
+
+/* .list-time{
+	text-align: center;
+} */
+
+/* list 검색창 */
+.search-container {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+#searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: #2e379c;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-container button:hover {
+    background-color: #0e1642;
+}
+/* 페이징 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination a{
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    margin: 0 4px;
+    border: 1px solid #c0c0c0;
+    border-radius: 50%; /* 완전한 원형으로 만듭니다 */
+    transition: background-color 0.3s, color 0.3s;
+    width: 36px; /* 고정된 너비 설정 */
+    height: 18px; /* 고정된 높이 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px; /* 글자 크기 통일 */
+}
+
+.pagination a:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination .active {	background-color: #f8f8f8;
+}
+
+.pagination a:first-child, .pagination a:last-child {
+    background-color: rgb(236, 236, 248);
+    font-weight: 800;
+    font-size:13px;
+    color: rgb(70, 70, 70);
+    text-shadow: 0.5px 0.5px 0.5px rgba(0,0,0,0.1);
+}
+
+/* 리스트 삭제 버튼 */
+.list-delete{
+	text-decoration: none;
+	text-align: right;
+    font-size: 23px;
+}    	
+.list-delete-btn{
+    color: #c23d54;
+	padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* admin 전체 검사페이지 */
+.adminlist {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.adminlist tr:first-child {
+    background-color: #3c3c3c;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.adminlist tr:first-child td {
+    padding: 15px;
+    font-weight: bold;
+}
+
+.adminlist td {
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #E1E1E1;
+    text-align: center;
+}
+
+.adminlist tr:last-child td {
+    border-bottom: none;
+}
+
+.adminlist tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.adminlist tr:hover:not(:first-child) {
+    background-color: #f1f1f1;
+    transition: all 0.3s ease;
+}
+
+
+
+.adminlist td:last-child { /* 검사일 열 */
+    white-space: nowrap;
+}
+
+.adminlist td:nth-child(1) { width: 3%; }
+.adminlist td:nth-child(2) { width: 15%; }
+.adminlist td:nth-child(3) { width: 25%; }
+.adminlist td:nth-child(4) { width: 25%; }
+.adminlist td:nth-child(5) { width: 9%; }
+.adminlist td:nth-child(6) { width: 23%; }
+
+@media screen and (max-width: 800px) {
+    .adminlist, .adminlist tbody, .adminlist tr, .adminlist td {
+        display: block;
+    }
+    
+    .adminlist tr:first-child {
+        display: none;
+    }
+    
+    .adminlist tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    
+    .adminlist td {
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .adminlist td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+    
+}
+
+
+/* 위험표시 */
+.perdata {
+	
+	
+    
+    padding: 3px 5px;
+    border-radius: 15px;
+    
+    position: absolute;  /* 절대 위치 설정 */
+    right: 25px; 
+    top: 50%;  /* 상단에서 50% 위치에 배치 */
+    transform: translateY(-50%);
+}
+
+.perdata.safe {
+    background-color: #4fac54;
+    color: white;
+    border: 2px solid #4fac54 !important;
+}
+
+.perdata.caution {
+    background-color: #ffaa29;
+    color: white;
+    border: 2px solid #ffaa29 !important;
+}
+
+.perdata.danger {
+    background-color: #ff6356;
+    color: white;
+    border: 2px solid #ff6356 !important;
+}
+
+.list_btn_btn {
+	padding: 3px 5px;
+    left: 25px;
+    
+}
+
+.list_btn_btn .btn {
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 3px;
+    padding: 4px;
+    display: inline-block;
+}
+
+.btn.btn-success {
+	background-color: #4fac54;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #4fac54;
+}
+
+.btn.btn-warning {
+	background-color: #ffaa29;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #ffaa29;
+}
+
+.btn.btn-danger {
+    background-color: #ff6356;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #ff6356;
+}
+
+.btn.btn-secondary {
+	background-color: #808080;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #808080;
+}

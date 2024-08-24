@@ -1,0 +1,50 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout}">
+<th:block layout:fragment="content">
+<div class="">
+	<section>
+		<div class="list_center">
+			<div class="wrapper">
+				<div class="list-container">
+					<h3>회원 목록</h3>
+					<form th:action="@{/admin/members}" method="get" class="search-container">
+					    <input type="text" name="kw" id="searchInput" th:value="${kw}" placeholder="검색어를 입력하세요">
+					    <button type="submit">검색</button>
+					</form>
+						<table class="adminlist">
+						    <tr>
+						        <td>NO</td>
+						        <td>아이디</td>
+						        <td>이름</td>
+						        <td>가입일</td>
+						    </tr>
+                            <tr th:each="member, loop : ${paging.content}">
+        						<td data-label="NO" th:text="${paging.totalElements - paging.number * paging.size - loop.index}"></td>
+						        <td data-label="아이디" th:text="${member.username}"></td>
+						        <td data-label="이름" th:text="${member.name}"></td>
+						        <td data-label="가입일" th:text="${#temporals.format(member.createDate, 'yyyy/MM/dd HH:mm')}"></td>
+						    </tr>
+						</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:if="${paging.totalPages > 0}" class="pagination">
+	    <a th:href="@{/admin/members(page=${paging.number - 1}, size=${paging.size})}"
+	       th:if="${paging.hasPrevious}">이전</a>
+	
+	    <span th:each="pageNumber : ${pageNumbers}">
+	        <a th:href="@{/admin/members(page=${pageNumber}, size=${paging.size})}"
+	           th:text="${pageNumber + 1}"
+	           th:class="${pageNumber == paging.number ? 'active' : ''}"></a>
+	    </span>
+	
+	    <a th:href="@{/admin/members(page=${paging.number + 1}, size=${paging.size})}"
+	       th:if="${paging.hasNext}">다음</a>
+	</div>
+</div>
+</th:block>
+
+</th:block>
+</html>

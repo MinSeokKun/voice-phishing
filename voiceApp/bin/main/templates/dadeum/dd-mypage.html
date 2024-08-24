@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html layout:decorate="~{dadeum/dadeum-layout}" layout:fragment="content">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애플리케이션 정보</title>
+    <link rel="stylesheet" href="/css/dd/mypage2.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="info-section">
+			<h1>사용자 정보</h1>
+            <table>
+                <tr>
+                    <td class="info-name">아이디</td>
+                    <td th:text="${MemberId}"></td>
+                    <td class="info-name nedmar">이름</td>
+                    <td th:text="${MemberName}"></td>
+                </tr>
+                <tr>
+                    <td class="info-name">API키</td>
+                    <td th:if="${apiKey != null}" th:text="${apiKey}"><span class="copy-icon">&#128203;</span></td>
+					<td th:if="${apiKey == null}" class="apitd">
+						<form th:action="@{/members/generate-api-key}" method="post" class="apikey">
+							<button class="btn3 btn3-primary">API키 발급하기</button>
+						</form>
+											</td>
+                    <td class="info-name nedmar">상태</td>
+                    <td th:if="${apiKey != null}">사용중</td>
+					<td th:if="${apiKey == null}">사용안함</td>
+                </tr>
+                <tr>
+                    <td class="info-name">이메일</td>
+                    <td th:text="${MemberEmail}"></td>
+                    <td class="info-name nedmar">Open API 사용량</td>
+                    <td th:text="${totalOpenApiUsage + ' 시간'}"></td>
+                </tr>
+            </table>
+        </div>
+		
+		<div class="graph-section">
+		    <div>
+		        
+		        <select id="yearSelect">
+				<option>연도 선택</option>
+				</select>
+		    </div>
+		    <canvas id="myChart"></canvas>
+		</div>
+
+		<script th:inline="javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+		    const monthlyUsage = /*[[${monthlyUsage}]]*/ {};
+		    const ctx = document.getElementById('myChart').getContext('2d');
+		    let chart;
+
+		    const yearSelect = document.getElementById('yearSelect');
+		    const years = [...new Set(Object.keys(monthlyUsage).map(ym => ym.split('-')[0]))].sort();
+		    years.forEach(year => {
+		        const option = document.createElement('option');
+		        option.value = year;
+		        option.textContent = year;
+		        yearSelect.appendChild(option);
+		    });
+
+		    function updateChart(selectedYear) {
+		        const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+		        const labels = months.map(month => `${month}월`);
+
+		        const internalData = months.map(month => {
+		            const key = `${selectedYear}-${month}`;
+		            return monthlyUsage[key] ? (monthlyUsage[key]['내부 사용'] || 0) : 0;
+		        });
+
+		        const externalData = months.map(month => {
+		            const key = `${selectedYear}-${month}`;
+		            return monthlyUsage[key] ? (monthlyUsage[key]['Open API 사용'] || 0) : 0;
+		        });
+
+		        if (chart) {
+		            chart.destroy();
+		        }
+
+		        chart = new Chart(ctx, {
+		            type: 'bar',
+		            data: {
+		                labels: labels,
+		                datasets: [
+		                    {
+		                        label: '내부 사용',
+		                        data: internalData,
+		                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+		                        borderColor: 'rgba(75, 192, 192, 1)',
+		                        borderWidth: 1
+		                    },
+		                    {
+		                        label: 'Open API 사용',
+		                        data: externalData,
+		                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+		                        borderColor: 'rgba(255, 99, 132, 1)',
+		                        borderWidth: 1
+		                    }
+		                ]
+		            },
+		            options: {
+		                responsive: true,
+		                scales: {
+		                    y: {
+		                        beginAtZero: true,
+		                        title: {
+		                            display: true,
+		                            text: '사용 시간 (분)'
+		                        },
+		                        ticks: {
+		                            callback: function(value) {
+		                                return Math.round(value) + '분';
+		                            }
+		                        }
+		                    },
+		                    x: {
+		                        title: {
+		                            display: true,
+		                            text: '월'
+		                        }
+		                    }
+		                },
+		                plugins: {
+		                    title: {
+		                        display: true,
+		                        text: `${selectedYear}년 월별 STT 사용량`
+		                    },
+		                    tooltip: {
+		                        callbacks: {
+		                            label: function(context) {
+		                                let label = context.dataset.label || '';
+		                                if (label) {
+		                                    label += ': ';
+		                                }
+		                                if (context.parsed.y !== null) {
+		                                    label += Math.round(context.parsed.y * 100) / 100 + '분';
+		                                }
+		                                return label;
+		                            }
+		                        }
+		                    }
+		                }
+		            }
+		        });
+		    }
+
+		    yearSelect.addEventListener('change', function() {
+		        updateChart(this.value);
+		    });
+
+		    if (years.length > 0) {
+		        yearSelect.value = years[years.length - 1];
+		        updateChart(yearSelect.value);
+		    } else {
+		        // 데이터가 없는 경우에도 빈 차트 표시
+		        updateChart(new Date().getFullYear().toString());
+		    }
+		});
+		</script>
+		</html>

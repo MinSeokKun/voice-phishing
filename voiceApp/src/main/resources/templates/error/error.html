@@ -1,0 +1,16 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{common/layout}">
+<head>
+    <link rel="stylesheet" href="/css/error.css">
+    <title>오류 발생</title>
+</head>
+<th:block layout:fragment="content">
+    <div class="error-container">
+        <h1><span th:text="${statusCode}"></span>오류가 발생했습니다</h1>
+        <p>죄송합니다. <span>[[${errorMessage}]]</span></p>
+        <p>문제가 지속되면 관리자에게 문의해주세요.</p>
+        <a href="/" class="btn-home">홈으로 돌아가기</a>
+    </div>
+</th:block>
+</html>

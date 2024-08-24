@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html layout:decorate="~{dadeum/dadeum-layout}" layout:fragment="content" lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>STT 결과목록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dd/styles.css">
+    <link rel="stylesheet" href="/css/dd/resultlist.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="resultlistcon">
+        <h2>STT 결과 목록</h2>
+        <div class="stt-list">
+            <div th:each="result : ${results}" class="stt-item" th:onclick="'window.location.href=\'' + @{/dadeum/results/detail/{id}(id=${result.id})} + '\''" th:classappend="${result.external ? 'external-result' : ''}">
+                <div class="stt-title" th:text="${result.fileName}"></div>
+                <div class="stt-text" th:text="${#strings.abbreviate(result.resultText, 50)}"></div>
+                <div class="stt-info">
+                    <span class="stt-date" th:text="${#temporals.format(result.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span class="stt-duration" th:with="minutes=${result.fileDurationSeconds / 60}, seconds=${result.fileDurationSeconds % 60}">
+                        <th:block th:if="${minutes >= 1}">
+                    <span th:text="${#numbers.formatDecimal(minutes, 1, 0)} + ' 분 '"></span>
+                        </th:block>
+                    <span th:text="${#numbers.formatDecimal(seconds, 1, 1)} + ' 초'"></span>
+					</span>
+                </div>
+            </div>
+            <div class="stt-paging">
+                <div>
+                    <span>
+                        <a th:href="@{/dadeum/results(page=${currentPage - 1}, size=${size})}" th:class="${currentPage == 0 ? 'disabled' : ''}">Previous</a>
+                    </span>
+                    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+                        <a th:href="@{/dadeum/results(page=${i}, size=${size})}" th:class="${i == currentPage ? 'current' : ''}" th:text="${i + 1}"></a>
+                    </span>
+                    <span>
+                        <a th:href="@{/dadeum/results(page=${currentPage + 1}, size=${size})}" th:class="${currentPage >= totalPages - 1 ? 'disabled' : ''}">Next</a>
+                    </span>
+                </div>
+                <div>
+                    총 갯수: <span th:text="${totalItems}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${loggedInUser == null}">
+        <p>STT 기능을 사용하려면 <a th:href="@{/members/login}">로그인</a>이 필요합니다.</p>
+    </div>
+
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    var apiKey = /*[[${apiKey}]]*/ '';
+    /*]]>*/
+
+	$(document).ready(function() {
+	    $('#fileInput').change(function() {
+	        var fileName = $(this).val().split('\\').pop();
+	        $('#fileName').text(fileName ? fileName : '선택된 파일 없음');
+	    });
+	
+	    $('#uploadForm').submit(function(event) {
+	        event.preventDefault();
+	        
+	        // 파일 입력 필드 확인
+	        var fileInput = $('#fileInput')[0];
+	        if (fileInput.files.length === 0) {
+	            $('#result').html('<p style="color: red;">파일을 업로드하세요.</p>');
+	            $('#result').css('display', 'block');
+	            return;
+	        }
+	        
+	        var formData = new FormData(this);
+	        $.ajax({
+	            url: '/dadeum/transcribe/file',
+	            type: 'POST',
+	            data: formData,
+	            processData: false,
+	            contentType: false,
+	            beforeSend: function(xhr) {
+	                if (apiKey) {
+	                    xhr.setRequestHeader('X-API-KEY', apiKey);
+	                }
+	            },
+	            success: function(response) {
+	                $('#result').html('<p style="color: green;">STT 내용: ' + response.resultText + '</p>');
+	                $('#result').css('display', 'block'); // 결과를 받은 후 요소를 표시
+	            },
+	            error: function(xhr, status, error) {
+	                var errorMessage = '알 수 없는 오류가 발생했습니다.';
+	                if (xhr.responseJSON) {
+	                    errorMessage = xhr.responseJSON.message || xhr.responseJSON.error || errorMessage;
+	                }
+	                $('#result').html('<p style="color: red;">에러 발생: ' + errorMessage + '</p>');
+	                $('#result').css('display', 'block'); // 에러 발생 시에도 요소를 표시
+	            }
+	        });
+	    });
+	});		
+    </script>
+</body>
+</html>

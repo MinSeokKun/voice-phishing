@@ -1,0 +1,36 @@
+<header id="header" style="border-bottom: 2px solid #808080;">
+	
+	<div class="wrapper">
+		<!-- 모바일 메뉴버튼 아이콘 -->
+		<div class="mobile-top-bar">
+			<div class="ico toggle-side-bar-btn" data-ico-now-animating="N">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+		
+		<div class="logo">
+			<a href="/"><img src="/images/logo.png" alt="logo"></a>
+		</div>
+		<div id="user-menu-container" class="user-menu">
+			<a id="user-icon-link" class="user-icon user" href="#" style="color: #333; text-decoration: none;">
+				<span th:if="${loggedInUser != null}">[[${loggedInUser.username}]]님</span>
+				<i th:unless="${loggedInUser != null}" class="fa-solid fa-circle-user"></i>
+			</a>
+			<div class="dropdown-menu">
+				<!-- 로그인 상태일 때 보이는 메뉴 -->
+				<div id="logged-in-menu" style="display: none;">
+				<a href="/member/mypage">마이페이지</a>
+				<a href="#" id="logout-link">로그아웃</a>
+				</div>
+				<!-- 로그아웃 상태일 때 보이는 메뉴 -->
+				<div id="logged-out-menu" style="display: none;">
+				<a href="/member/sign-up">회원가입</a>
+				<a href="/member/login">로그인</a>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</header>

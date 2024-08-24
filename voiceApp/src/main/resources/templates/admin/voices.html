@@ -1,0 +1,103 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+<th:block layout:fragment="content">
+    <div class="">
+        <section>
+            <div class="list_center">
+                <div class="wrapper">
+                    <div class="list-container">
+                        <h3>보이스피싱 검사목록</h3>
+                        <form th:action="@{/admin/voices}" method="get" class="search-container">
+						    <input type="text" name="kw" id="searchInput" th:value="${kw}" placeholder="검색어를 입력하세요">
+						    <button type="submit">검색</button>
+						</form>
+                        
+                        <table class="adminlist">
+						    <tr>
+						        <td class="">NO</td>
+						        <td class="">아이디</td>
+						        <td class="">제목</td>
+						        <td class="">파일명</td>
+						        <td class="">확률</td>
+						        <td class="">검사일</td>
+						        <td></td>
+						    </tr>
+						    <tr th:each="voice, loop : ${paging.content}">
+   								<td data-label="NO" th:text="${paging.totalElements - paging.number * paging.size - loop.index}"></td>
+						        <td data-label="아이디" th:text="${voice.member.username}"></td>
+						        <td data-label="제목" th:text="${voice.tit}"></td>
+						        <td data-label="파일명" th:text="${voice.fileName}"></td>
+						        <td data-label="확률" th:text="${voice.per + '%'}"></td>
+						        <td data-label="검사일" th:text="${#temporals.format(voice.createDate, 'yyyy/MM/dd HH:mm')}"></td>
+						        <td>
+						            <div class="list-delete">
+						                <a class="list-delete-btn" href="javascript:void(0);"
+						                   th:data-uri="@{/voice/delete/{id}(id=${voice.id})}"
+						                   onclick="deleteVoice(this)">
+						                    <i class="fa-regular fa-trash-can"></i>
+						                </a>
+						            </div>
+						        </td>
+						    </tr>
+						</table>		
+                        <!-- <div th:each="voice, loop : ${paging}" class="list-item">
+                            <h5 class="list-title" th:classappend="${voice.per < 40 ? 'low-risk' : (voice.per < 75 ? 'medium-risk' : 'high-risk')}">
+                                <div>
+                                    <span th:text="${#numbers.formatInteger(paging.totalElements - (paging.number * paging.size) - loop.index, 2)}"></span>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    <span></span>
+                                    <span class="perdata" th:text="${voice.tit}"></span>
+                                </div>
+                                <div class="list-time">
+                                    <span class="perdata" th:text="${voice.per + '%'}"></span>
+                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                    <span th:text="${#temporals.format(voice.createDate, 'yyyy/MM/dd HH:mm')}"></span>
+                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                            </h5>
+                            <div class="list-content">
+                                <p>
+                                    <span th:text="${voice.data}"></span>
+                                </p>
+                                <div class="list-delete">
+                                    <a class="list-delete-btn" href="javascript:void(0);"
+                                       th:data-uri="@{/voice/delete/{id}(id=${voice.id})}"
+                                       onclick="deleteVoice(this)">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div th:if="${paging.totalPages > 0}" class="pagination">
+		    <a th:href="@{/admin/voices(page=${paging.number - 1})}" 
+		       th:if="${paging.hasPrevious}">이전</a>
+		    
+		    <span th:each="pageNumber : ${pageNumbers}">
+		        <span th:if="${pageNumber == -1}">...</span>
+		        <a th:if="${pageNumber != -1}" 
+		           th:href="@{/admin/voices(page=${pageNumber})}" 
+		           th:text="${pageNumber + 1}"
+		           th:class="${pageNumber == paging.number ? 'active' : ''}"></a>
+		    </span>
+		    
+		    <a th:href="@{/admin/voices(page=${paging.number + 1})}" 
+		       th:if="${paging.hasNext}">다음</a>
+		</div>
+    </div>
+</th:block>
+
+<!-- CSS와 JavaScript 파일 포함 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</th:block>
+</html>

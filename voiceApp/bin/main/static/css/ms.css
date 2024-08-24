@@ -1,0 +1,483 @@
+/* 회원가입 페이지 */
+.signup-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+.signup-title {
+    color: #2c3e50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.signup-form .signup-field {
+    margin-bottom: 15px;
+}
+.signup-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #555;
+}
+.signup-input,
+.signup-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+.signup-select {
+    background-color: white;
+}
+.signup-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+.signup-submit:hover {
+    background-color: #2980b9;
+}
+
+/* 드랍메뉴 */
+.user-menu {
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+
+/* 마이페이지 */
+.mypage-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.mypage-title {
+    color: #2c3e50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.mypage-info .mypage-field {
+    margin-bottom: 15px;
+}
+
+.mypage-info label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.mypage-input,
+.mypage-select,
+.mypage-readonly {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.mypage-select {
+    background-color: white;
+}
+
+.mypage-readonly {
+    background-color: #f9f9f9;
+    color: #333;
+    min-height: 20px;
+}
+
+.mypage-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.mypage-submit:hover {
+    background-color: #2980b9;
+}
+
+/* 로그인 페이지 */
+.login-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+.login-title {
+    color: #2c3e50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.login-form .login-field {
+    margin-bottom: 15px;
+}
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #555;
+}
+.login-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+.btn-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.login-submit,
+.signup-submit,
+.cancel-submit {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    height: 40px; /* 높이 고정 */
+    line-height: 20px; /* 텍스트 세로 중앙 정렬 */
+}
+.login-submit {
+    background-color: #3498db;
+    color: white;
+}
+.signup-submit {
+    background-color: #2ecc71;
+    color: white;
+}
+.login-submit:hover {
+    background-color: #2980b9;
+}
+.cancel-submit {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.signup-submit:hover {
+    background-color: #2980b9;
+}
+
+.cancel-submit:hover {
+    background-color: #c0392b;
+}
+
+/* 모바일 메뉴 라이브러리 */
+/* 상단바 */
+.mobile-top-bar {
+    /* background-color:black; */
+/*     position:fixed; */
+/*     top:50%; */
+/*     left:0; */
+/*     width:100%; */
+    width: 24px;
+    height: 20px;
+    z-index:1;
+/*     transform: translateY(-50%); */
+}
+.mobile-top-bar > .logo {
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    font-size:1.5rem;
+}
+
+
+
+/* 토글 사이드바 버튼 아이콘 */
+.ico {
+    position:absolute;
+    top:50%;
+    /* left:8px; */
+    width:24px;
+    height:20px;
+    transform:translatey(-50%);
+    cursor:pointer;
+}
+
+.ico.nav {
+    position:absolute;
+    top:40px;
+    left:30px;
+    width:24px;
+    height:20px;
+    transform:translatey(-50%);
+    cursor:pointer;
+}
+
+.ico > div {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 24px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 20px;
+}
+.ico > div:nth-child(2) {
+    top:40%;
+    transition:visibility 0s .15s;
+}
+.ico.active > div:nth-child(2) {
+    visibility:hidden;
+    transition:visibility 0s;
+}
+.ico > div:nth-child(3) {
+    top:80%;
+}
+.ico > div:nth-child(1), .ico > div:nth-child(3) {
+    transition:top .15s .15s, transform .15s;
+}
+.ico.active > div:nth-child(1), .ico.active > div:nth-child(3) {
+    top:40%;
+    transform:rotate(45deg);
+    transition:top .15s, transform .15s .15s;
+}
+.ico.active > div:nth-child(3) {
+    transform:rotate(-45deg);
+}
+
+/* 기존 코드 유지 */
+
+/* 헤더의 아이콘 스타일 */
+#header .ico > div {
+    transition: none;
+}
+
+#header .ico.active > div:nth-child(1),
+#header .ico.active > div:nth-child(3) {
+    top: 40%;
+    transition: top .15s, transform .15s .15s;
+}
+
+#header .ico.active > div:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+#header .ico.active > div:nth-child(2) {
+    visibility: hidden;
+    transition: visibility 0s .15s;
+}
+
+#header .ico.active > div:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+/* nav의 아이콘 스타일 (항상 X 모양) */
+#navbar .ico {
+    transition: none; /* X 버튼의 transition 제거 */
+}
+
+#navbar .ico > div:nth-child(2) {
+    visibility: hidden;
+}
+
+#navbar .ico > div:nth-child(1),
+#navbar .ico > div:nth-child(3) {
+    top: 40%;
+}
+
+#navbar .ico > div:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+#navbar .ico > div:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+/* 라이브러리 끝 */
+
+/* 좌측 사이드 바 */
+/* 좌측 사이드바 배경 */
+.left-side-bar-box {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0);
+    visibility:hidden;
+    /* transition:visibility .5s, background-color .5s; */
+    transition: transform 0.3s ease; /* 사이드바의 transition 조정 */
+}
+.left-side-bar-box.active {
+    background-color:rgba(0,0,0,0.5);
+    visibility:visible;
+    z-index: 1008;
+}
+
+/* 좌측 사이드바 */
+.left-side-bar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 250px;
+    height: 400px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding-top: 40px;
+    transition: left .5s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-side-bar > .menu-1 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-side-bar > .menu-1 ul > li {
+    margin-bottom: 5px;
+}
+
+.left-side-bar > .menu-1 ul > li > a {
+    display: block;
+    padding: 10px 40px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.left-side-bar > .menu-1 ul > li:hover > a {
+    background-color: #f0f0f0;
+    color: #0066cc;
+}
+
+/* 혼자가 아닌 a 에 +를 붙혀준다 */
+.left-side-bar > .menu-1 ul > li > a:not(:only-child)::after {
+    content: "+";
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+/* 엑티브가 있는 메뉴(펼쳐진 메뉴)에 a에 - 를 붙혀준다 */
+.left-side-bar > .menu-1 ul > li.active > a:not(:only-child)::after {
+    content: "-";
+    transform: rotate(180deg);
+}
+
+.left-side-bar > .menu-1 > ul ul {
+    display: none;
+    padding-left: 15px;
+}
+
+.left-side-bar > .menu-1 ul > li.active > ul {
+    display: block;
+}
+
+/* 활성화된 메뉴 스타일 */
+.left-side-bar > .menu-1 ul > li.active > a {
+    font-weight: bold;
+    color: #0066cc;
+    background-color: #e6f2ff;
+}
+
+/* 서브메뉴 스타일 */
+.left-side-bar > .menu-1 > ul ul > li > a {
+    font-size: 0.9em;
+    padding: 8px 15px;
+}
+
+/* 3차 메뉴 스타일 */
+.left-side-bar > .menu-1 > ul ul ul > li > a {
+    font-size: 0.85em;
+    padding: 6px 15px;
+}
+
+.pagination span a.active {
+	background-color: rgb(164 161 161);
+}
+
+.signup-username {
+	display: flex;
+}
+
+.signup-username input {
+	border-radius: 4px 0 0 4px;
+}
+
+.checkUsername {
+	width: 110px;
+	background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+}

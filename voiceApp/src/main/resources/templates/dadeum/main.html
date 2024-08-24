@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Main Page</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/dd/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container" style="height: auto">
+                <a class="navbar-brand" href="/dadeum"><img src="/img/navbar-logo1.svg" alt="..." /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item" th:if="${loggedInUser == null}"><a class="nav-link" th:href="@{/members/signup}">회원가입</a></li>
+                        <li class="nav-item" th:if="${loggedInUser != null}"><a class="nav-link" sec:authorize="isAuthenticated" th:href="@{/members/mypage}">My Page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/dadeum/guide">개발 가이드</a></li>
+                        <li class="nav-item" th:if="${loggedInUser == null}"><a class="nav-link" href="/members/login">로그인</a></li>
+                        <li class="nav-item dropdown" th:if="${loggedInUser != null}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span th:if="${loggedInUser != null}" th:text="${loggedInUser.name} + '님 접속중'" style="font-weight: 500;"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" th:href="@{/members/modify}">회원정보 수정</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="/logout">로그아웃</a>
+                            </li>
+                        </ul>
+						</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            
+            <div class="container">
+                <div class="masthead-subheading" style="margin-top: 40px;">Welcome To Our DaDeum!</div>
+                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="/dadeum/UseSTT">Let's Try  </a>
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Services</h2>
+                    <h3 class="section-subheading text-muted">' 다듬 ' 서비스로 많은 걸 누리다.</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">혁신적인 경험</h4>
+                        <p class="text-muted">음성을 텍스트로 변환하여 사용자에게 새로운 경험을 제공합니다</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">편리한 소통</h4>
+                        <p class="text-muted">음성 인식 기술을 활용하여 편리한 소통을 실현합니다.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">간편한 연동</h4>
+                        <p class="text-muted">restful API 키</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start"> &copy; DaDeum </div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="https://x.com/?lang=ko" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/?locale=ko_KR" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://kr.linkedin.com/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/js/dd/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

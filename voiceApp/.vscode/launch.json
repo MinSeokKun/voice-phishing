@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-VoiceAppApplication<voiceApp>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.voice.app.VoiceAppApplication",
+            "projectName": "voiceApp",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

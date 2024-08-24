@@ -1,0 +1,94 @@
+<!-- nav수정 -->
+<nav id="navbar" class="left-side-bar-box">
+    <div class="left-side-bar">
+        <!-- 모바일 메뉴버튼 아이콘 -->
+        <div class="mobile-top-bar">
+            <div class="ico nav toggle-side-bar-btn" data-ico-now-animating="N">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="menu-1">
+            <ul style="margin-top: 20px;">
+                <li data-role="user">
+                    <a href="#">내 메뉴</a>
+                    <ul>
+                        <li>
+                            <a href="/">보이스핑 검사</a>
+                        </li>
+                        <li>
+                            <a href="/list">내 검사 목록</a>
+                        </li>
+                    </ul>
+                </li>
+                <li data-role="admin">
+                    <a href="#">관리자</a>
+                    <ul>
+                        <li>
+                            <a href="/admin/members">회원 관리</a>
+                        </li>
+                        <li>
+                            <a href="/admin/voices">검사 관리</a>
+                        </li>
+                    </ul>
+                </li>
+                <li data-role="anonymous">
+                  <a href="#">Open API</a>
+                  <ul>
+                      <li>
+                          <a href="/dadeum">Speech-To-Text</a>
+                      </li>
+                  </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+    	  // 사용자 역할에 따라 메뉴를 표시하거나 숨기는 함수
+    	  function toggleMenus(userRoles) {
+    	    var adminMenu = $('li[data-role="admin"]');
+    	    var userMenu = $('li[data-role="user"]');
+          var anonymousMenu = $('li[data-role="anonymous"]');
+
+    	    if (userRoles && userRoles.length > 0) {
+    	      // 사용자가 로그인한 경우
+    	      if (userRoles.includes('ROLE_ADMIN')) {
+    	        // 관리자인 경우 모든 메뉴 표시
+    	        adminMenu.show();
+    	        userMenu.show();
+    	      } else if (userRoles.includes('ROLE_USER')) {
+    	        // 일반 사용자인 경우 사용자 메뉴만 표시
+    	        adminMenu.hide();
+    	        userMenu.show();
+    	      } else if (userRoles.includes('ROLE_ANONYMOUS')) {
+              userMenu.hide();
+              adminMenu.hide();
+              anonymousMenu.show();
+    	      }
+    	    }
+    	  }
+
+    	  // 사용자 역할을 가져와서 메뉴를 조정
+    	  $.ajax({
+    	    url: '/api/user-roles',
+    	    method: 'GET',
+    	    dataType: 'json'
+    	  })
+    	  .done(function(data) {
+    	    console.log('API 응답:', data);
+    	    if (Array.isArray(data)) {
+    	      toggleMenus(data);
+    	    } else {
+    	      console.error('올바른 역할 데이터를 받지 못했습니다.');
+    	      toggleMenus([]); // 로그인하지 않은 것으로 처리
+    	    }
+    	  })
+    	  .fail(function(jqXHR, textStatus, errorThrown) {
+    	    console.error('사용자 역할 가져오기 오류:', textStatus, errorThrown);
+    	    toggleMenus([]); // 오류 발생 시 로그인하지 않은 것으로 처리
+    	  });
+    	});
+    </script>
+</nav>
